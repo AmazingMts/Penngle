@@ -161,4 +161,4 @@ This is a distributed search engine implementation for educational purposes. Fee
 
 ## 📄 License
 
-This project is part of a university course assignment.
+This project is part of Upenn distributed system lab.
