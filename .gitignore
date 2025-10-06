@@ -1,0 +1,10 @@
+*.class
+.vscode
+.DS_Store
+.project
+.classpath
+.settings
+.idea
+*.iml
+__worker/
+#integrated/src/cis5550/test/

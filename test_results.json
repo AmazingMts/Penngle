@@ -1,0 +1,4 @@
+{
+  "indexer": { "testStatus": "PASS", "testComments": "", "maxPoints": 25, "points": 25 },
+  "pagerank": { "testStatus": "FAIL", "testComments": "Looks like 'pagerank.jar' was not found in the current directory.", "maxPoints": 40, "points": 0 }
+}

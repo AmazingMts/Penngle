@@ -1,0 +1,31 @@
+jar
+cd /Users/mts/CIS5550/integrated/out/production/Fa24-CIS5550-Project-CyberSquad-webserver_kvs_flame
+1 Flame
+jar cf /Users/mts/CIS5550/integrated/flame.jar -C . cis5550/flame -C . cis5550/tools -C . cis5550/generic
+2 KVS
+jar cf /Users/mts/CIS5550/integrated/kvs.jar -C . cis5550/generic -C . cis5550/kvs -C . cis5550/tools
+3 webserver
+jar cf /Users/mts/CIS5550/integrated/webserver.jar -C . cis5550/webserver -C . cis5550/tools
+4 crawler
+jar cf /Users/mts/CIS5550/integrated/crawler.jar -C . cis5550/external -C . cis5550/jobs -C . cis5550/tools
+5 indexer
+jar cf /Users/mts/CIS5550/integrated/indexer.jar -C . cis5550/external -C . cis5550/jobs -C . cis5550/tools
+6 pagerank
+jar cf /Users/mts/CIS5550/integrated/pagerank.jar -C . cis5550/external -C . cis5550/jobs -C . cis5550/tools
+put in lib
+
+setup coordinator and worker
+java -cp lib/kvs.jar:lib/webserver.jar:lib/flame.jar cis5550.kvs.Coordinator 8000
+java -cp lib/kvs.jar:lib/webserver.jar:lib/flame.jar cis5550.kvs.Worker 8001 worker1 localhost:8000
+java -cp lib/kvs.jar:lib/webserver.jar:lib/flame.jar cis5550.flame.Coordinator 9000 localhost:8000
+java -cp lib/kvs.jar:lib/webserver.jar:lib/flame.jar cis5550.flame.Worker 9002 localhost:9000
+
+submit jobs:
+1. crawler
+java -cp lib/kvs.jar:lib/webserver.jar:lib/flame.jar cis5550.flame.FlameSubmit localhost:9000 crawler.jar cis5550.jobs.Crawler http://simple.crawltest.401.cis5550.net/
+2. indexer
+java -cp lib/kvs.jar:lib/webserver.jar:lib/flame.jar cis5550.flame.FlameSubmit localhost:9000 indexer.jar cis5550.jobs.Indexer
+3. pagerank
+java -cp lib/kvs.jar:lib/webserver.jar:lib/flame.jar cis5550.flame.FlameSubmit localhost:9000 pagerank.jar cis5550.jobs.PageRank 0.1 85
+
+
